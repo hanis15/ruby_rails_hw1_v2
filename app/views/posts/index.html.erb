@@ -1,0 +1,22 @@
+<h1>Posts</h1>
+<table>
+  <tr>
+    <th> Title </th>
+    <th> Author </th>
+    <th> Body </th>
+    <th> Tags </th>
+  </tr>
+
+  <% @posts.each do |post| %>
+    <tr>
+      <td> <%= post.title %> </td>
+      <td> <%= post.author %> </td>
+      <td> <%= post.body %> </td>
+      <td> <%= post.tag_strings.map {|c| c.name}.join(', ') %> </td>
+      <td><%= link_to 'Show', post %></td>
+      <td><%= link_to 'Edit', edit_post_path(post) %></td>
+      <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Smazat?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
