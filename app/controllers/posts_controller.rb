@@ -36,8 +36,8 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update_attributes(params[:post])
-    redirect_to @post
+    @post.update_attributes(params.require(:post).permit(:title, :author, :body))
+    redirect_to :action => "index"
   end
 
   def destroy

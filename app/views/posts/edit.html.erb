@@ -1,5 +1,5 @@
 <h1> Edit post</h1>
-<%= form_for @post,  url: posts_path do |f| %>
+<%= form_for @post do |f| %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
