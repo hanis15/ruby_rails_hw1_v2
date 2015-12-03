@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     post_params = params[:post]
     @post = Post.new(:title => post_params[:title], :author => post_params[:author], :body => post_params[:body])
     @post.save
-    @post.tag_strings.create(:name => post_params[:tag_string])
+    @post.tag_strings.create(:name => post_params[:tag_strings])
     @post.save
     redirect_to @post
   end
