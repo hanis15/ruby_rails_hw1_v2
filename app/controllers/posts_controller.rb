@@ -9,14 +9,8 @@ class PostsController < ApplicationController
 
   def create
     post_params = params[:post]
-    if post_params[:tag_strings].empty?
-      flash[:title] = 'Error'
-      d
-      flash[:notice] = 'must have at least one tag'
-    end
     @post = Post.new(:title => post_params[:title], :author => post_params[:author], :body => post_params[:body])
     @post.save
-
     string_tags = post_params[:tag_strings].split(/ *[, ] */).uniq
     string_tags.each do |tag|
       curr_tag = TagString.where(:name => tag)
@@ -26,7 +20,6 @@ class PostsController < ApplicationController
         @post.tag_strings << curr_tag
       end
     end
-
     redirect_to @post
   end
 
@@ -36,7 +29,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    @tags = @post.tag_strings.map {|c| c.name}.join(', ')
+    @tags = @post.tag_strings.map { |c| c.name }.join(', ')
   end
 
   def update
@@ -58,5 +51,4 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to @post
   end
-
 end
