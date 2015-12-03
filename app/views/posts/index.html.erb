@@ -1,5 +1,13 @@
 <h1>Posts</h1>
-<table>
+
+<p class="tag-center"> 
+  <% @tags.each do |tag| %>
+    <%= tag.name %>
+  <% end %>
+</p>
+
+
+<table class="center">
   <tr>
     <th> Title </th>
     <th> Author </th>
@@ -13,7 +21,6 @@
       <td> <%= post.author %> </td>
       <td> <%= post.body %> </td>
       <td> <%= post.tag_strings.map {|c| c.name}.join(', ') %> </td>
-      <td><%= link_to 'Show', post %></td>
       <td><%= link_to 'Edit', edit_post_path(post) %></td>
       <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Smazat?' } %></td>
     </tr>

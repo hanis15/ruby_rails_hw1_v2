@@ -1,14 +1,19 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
+    @tags = TagString.all
   end
 
   def new
   end
 
   def create
-    #render plain: params[:post].inspect
     post_params = params[:post]
+    if post_params[:tag_strings].empty?
+      flash[:title] = 'Error'
+      d
+      flash[:notice] = 'must have at least one tag'
+    end
     @post = Post.new(:title => post_params[:title], :author => post_params[:author], :body => post_params[:body])
     @post.save
 
